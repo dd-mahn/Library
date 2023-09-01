@@ -5,22 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="asset/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/345d5666fe.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <section class="header">
         <div class="logo">
-            <span>MyLibrary</span>
+            <span>myLibrary</span>
         </div>
-        <div class="log-in">
-            Log in here!
+        <div id="login-btn">
+            logIn
         </div>
     </section>
     <section class="book-display">
-        <div class="add-btn">
-            Add new book
+        <div id="add-btn">
+            <strong>+</strong> Add new book
         </div>
         <div class="container">
-            
+            <div class="book-card">
+                <div class="card-bg"></div>
+                <div class="name align-center"><span>.name</span></div>
+                <div class="author align-center"><span>.author:</span></div>
+                <div class="page align-center"><span>.page:</span></div>
+                <div class="status center"><span>not read</span></div>
+                <div id="rm-btn" class="center"><i class="fa-regular fa-trash-can"></i></div>
+            </div>
         </div>
     </section>
     <script src="asset/js/script.js"></script>

@@ -8,3 +8,109 @@
     --stroke-color:#020826;
     --tertiary-color:#f25042;
 }
+body{
+    font-size: 20px;
+    list-style: none;
+    line-height: 1.5;
+    font-family: 'Merriweather', serif;
+    margin:0;
+    padding:0;
+    width: auto;
+    height: auto;
+    background-color: var(--background-color);
+    color: var(--paragraph-color);
+}
+.align-center{
+    display: flex;
+    align-items: center;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+    padding: 0px 250px;
+    min-height: 125px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--btn-color);
+    color: var(--headline-color);
+}
+.header .logo{
+    font-size: 36px;
+    font-weight: bold;
+}
+.header #login-btn{
+    background-color: var(--headline-color);
+    color: var(--btn-text-color);
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 5px;
+}
+
+.book-display{
+    padding: 24px 250px;
+}
+.book-display #add-btn{
+    width: 200px;
+    text-align: center;
+    padding: 12px 0px;
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+    margin-bottom: 24px;
+}
+.book-display .container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.container .book-card{
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+    min-height: 300px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 3fr 1fr 1fr 1fr 1fr;
+    gap: 8px;
+}
+.book-card .name{
+    font-weight: bold;
+    grid-area: 2 / 1 / 2 / 3;
+}
+.book-card .card-bg{
+    min-height: 100px;
+    background-color: #8c7851;
+    border-radius: 5px;
+    grid-area:1 / 1 / 1 / 3;
+}
+.book-card .author{
+    grid-area: 3 / 1 / 3 / 3;
+}
+.book-card .page{
+    grid-area: 4 / 1 / 4 / 3;
+}
+.book-card .author,
+.book-card .page{
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+    padding: 0px 8px;
+}
+.book-card .status{
+    margin-top: 8px;
+    padding: 4px 0px;
+    background-color: var(--tertiary-color);
+    color: var(--btn-text-color);
+    border-radius: 5px;
+    grid-area: 5 / 1 / 5 / 1;
+}
+.book-card #rm-btn{
+    color: var(--tertiary-color);
+    margin-top: 8px;
+    grid-area: 5 / 2 / 5 / 2;
+    font-size: 22px;
+}

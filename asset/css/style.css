@@ -7,6 +7,7 @@
     --btn-text-color:#fffffe;
     --stroke-color:#020826;
     --tertiary-color:#f25042;
+    --read-color:#208448;
 }
 body{
     font-size: 20px;
@@ -20,6 +21,8 @@ body{
     background-color: var(--background-color);
     color: var(--paragraph-color);
 }
+
+/* Function classes */
 .align-center{
     display: flex;
     align-items: center;
@@ -30,6 +33,8 @@ body{
     align-items: center;
 }
 
+
+/* Header */
 .header{
     padding: 0px 250px;
     min-height: 125px;
@@ -51,6 +56,8 @@ body{
     border-radius: 5px;
 }
 
+
+/* Display */
 .book-display{
     padding: 24px 250px;
 }
@@ -68,6 +75,7 @@ body{
     gap: 12px;
 }
 
+/* Cards */
 .container .book-card{
     border: 2px solid var(--stroke-color);
     border-radius: 5px;
@@ -113,4 +121,51 @@ body{
     margin-top: 8px;
     grid-area: 5 / 2 / 5 / 2;
     font-size: 22px;
+}
+
+
+/* Add Form */
+#add-dialog{
+    width: 400px;
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+    background-color: var(--background-color);
+    color: var(--headline-color);
+}
+#add-form{
+
+}
+
+#add-form div{
+    display: flex;
+    margin-bottom: 12px;
+}
+#add-form>div>label{
+    margin-right: 12px;
+}
+input[type="text"]{
+    width: 100%;
+    outline: none;
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+}
+fieldset{
+    border: 2px solid var(--stroke-color);
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-evenly;
+}
+input[type="radio"]{
+    
+}
+#add-form>div>button{
+    border:none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    margin: 12px 12px 0px 0px;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background-color: var(--btn-color);
+    color: var(--btn-text-color);
 }

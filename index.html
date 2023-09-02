@@ -24,15 +24,40 @@
             <strong>+</strong> Add new book
         </div>
         <div class="container">
-            <div class="book-card">
+            <!-- <div class="book-card">
                 <div class="card-bg"></div>
                 <div class="name align-center"><span>.name</span></div>
                 <div class="author align-center"><span>.author:</span></div>
                 <div class="page align-center"><span>.page:</span></div>
                 <div class="status center"><span>not read</span></div>
                 <div id="rm-btn" class="center"><i class="fa-regular fa-trash-can"></i></div>
-            </div>
+            </div> -->
         </div>
+        <dialog id="add-dialog" open>
+            <form id="add-form">
+                <div>
+                    <label for="name">.name:</label>
+                    <input type="text" id="name" name="name">
+                </div>
+                <div>
+                    <label for="author">.author:</label>
+                    <input type="text" id="author" name="author">
+                </div>
+                <div>
+                    <label for="page">.page:</label>
+                    <input type="text" name="page" id="page">
+                </div>
+                <fieldset>
+                    <legend>Have you read the book?</legend>
+                    <div><label for="read">Yes</label><input type="radio" id="read" value="read" name="status"></div>
+                    <div><label for="notread">No</label><input type="radio" id="notread" value="not read" name="status"></div>
+                </fieldset>
+                <div class="center">
+                    <button type="button">Create</button>
+                    <button type="button">Cancel</button>
+                </div>
+            </form>
+        </dialog>
     </section>
     <script src="asset/js/script.js"></script>
 </body>

@@ -32,7 +32,15 @@ body{
     justify-content: center;
     align-items: center;
 }
-
+.button{
+    transition: background-color .2s;
+    transition: color .2s;
+    background-color: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    outline:none;
+}
 
 /* Header */
 .header{
@@ -54,20 +62,28 @@ body{
     font-weight: bold;
     padding: 8px 16px;
     border-radius: 5px;
+    border:none;
 }
-
+#login-btn:hover{
+    background-color: var(--background-color);
+    color: var(--headline-color);
+}
 
 /* Display */
 .book-display{
     padding: 24px 250px;
 }
-.book-display #add-btn{
+.book-display #open-form{
     width: 200px;
     text-align: center;
     padding: 12px 0px;
     border: 2px solid var(--stroke-color);
     border-radius: 5px;
     margin-bottom: 24px;
+}
+#open-form:hover{
+    background-color: var(--btn-color);
+    color: var(--btn-text-color);
 }
 .book-display .container{
     display: grid;
@@ -116,16 +132,19 @@ body{
     border-radius: 5px;
     grid-area: 5 / 1 / 5 / 1;
 }
-.book-card #rm-btn{
+.book-card #open-remove{
     color: var(--tertiary-color);
     margin-top: 8px;
     grid-area: 5 / 2 / 5 / 2;
     font-size: 22px;
 }
+#open-remove :hover{
+    opacity: 0.8;
+}
 
-
-/* Add Form */
-#add-dialog{
+/* Add Dialog */
+#add-dialog,
+#rm-dialog{
     width: 400px;
     border: 2px solid var(--stroke-color);
     border-radius: 5px;
@@ -158,14 +177,31 @@ fieldset{
 input[type="radio"]{
     
 }
-#add-form>div>button{
+#add-form>div>button,
+#rm-dialog>div>button{
     border:none;
     border-radius: 5px;
     padding: 12px 24px;
-    margin: 12px 12px 0px 0px;
+    margin: 24px 12px 0px 0px;
     font-family: 'Merriweather', serif;
     font-weight: bold;
     letter-spacing: 1px;
-    background-color: var(--btn-color);
+    /* background-color: var(--btn-color); */
     color: var(--btn-text-color);
+}
+#add-form>div>button:hover,
+#rm-dialog>div>button:hover{
+    opacity: 0.8;
+}
+
+/* Remove dialog */
+#rm-dialog{
+    text-align: center;
+}
+#close-btn{
+    background-color: var(--tertiary-color);
+}
+#add-btn,
+#rm-btn{
+    background-color: var(--read-color);
 }

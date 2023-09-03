@@ -8,10 +8,29 @@ function book(name, author, page, read){
     this.read = read
 }
 //DOM elements
-let addBtn = document.querySelectorAll('#add-btn')
+    //On page:
+let openFormBtn = document.querySelector('#open-form')
+let loginBtn = document.getElementById("login-btn")
 let displayBtn = document.querySelectorAll('#dp-btn')
-let removeBtn = document.querySelectorAll('#rm-btn')
+let openRemoveBtn = document.querySelectorAll('#open-remove')
 let updateBtn = document.querySelectorAll('#upd-btn')
+
+    //On dialog
+let addDialog = document.getElementById("add-dialog")
+let removeCf = document.getElementById("rm-dialog")
+let addBtn = document.getElementById("add-btn")
+let closeBtn = document.querySelectorAll("#close-btn")
+let removeBtn = document.getElementById("rm-btn")
+
+    //Functionality
+let container = document.querySelector(".container")
+
+    //On Form
+let nameInput = document.getElementById("name")
+let authorInput = document.getElementById("author")
+let pageInput = document.getElementById("page")
+
+
 //Function to fill a form to add new Object to the Array
 function add(a, b, c, d){
     return library.push(new book(a, b, c, d))
@@ -37,7 +56,11 @@ function getRandomColor() {
 
 //Into action: Books are displayed in container with grid system
 
-    //Read click event - Add new grid item > Get 3 random colors to make gradient image
+    //Read click event - Open form 
+openFormBtn.addEventListener("click", ()=>{
+    addDialog.showModal()
+})
+    //Read form input then assign values to create new object
 
     //Loop through array to display everything as cards
 

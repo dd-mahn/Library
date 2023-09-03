@@ -56,10 +56,13 @@ function getRandomColor() {
 
 //Into action: Books are displayed in container with grid system
 
-    //Read click event - Open form 
+    //Read click event - Open form - Close form
 openFormBtn.addEventListener("click", ()=>{
     addDialog.showModal()
 })
+closeBtn.forEach(btn => btn.addEventListener("click", (modal)=> {
+    modal.close("canceled")
+}))
     //Read form input then assign values to create new object
 
     //Loop through array to display everything as cards

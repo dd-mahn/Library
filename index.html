@@ -15,14 +15,14 @@
         <div class="logo">
             <span>myLibrary</span>
         </div>
-        <div id="login-btn">
+        <button type="button" class="button" id="login-btn">
             logIn
-        </div>
+        </button>
     </section>
     <section class="book-display">
-        <div id="add-btn">
+        <button type="button" class="button" id="open-form">
             <strong>+</strong> Add new book
-        </div>
+        </button>
         <div class="container">
             <!-- <div class="book-card">
                 <div class="card-bg"></div>
@@ -30,33 +30,40 @@
                 <div class="author align-center"><span>.author:</span></div>
                 <div class="page align-center"><span>.page:</span></div>
                 <div class="status center"><span>not read</span></div>
-                <div id="rm-btn" class="center"><i class="fa-regular fa-trash-can"></i></div>
+                <div id="open-remove" class="center"><i class="fa-regular fa-trash-can"></i></div>
             </div> -->
         </div>
-        <dialog id="add-dialog" open>
+        <dialog id="add-dialog">
             <form id="add-form">
                 <div>
                     <label for="name">.name:</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" id="name" name="name" required>
                 </div>
                 <div>
                     <label for="author">.author:</label>
-                    <input type="text" id="author" name="author">
+                    <input type="text" id="author" name="author" required>
                 </div>
                 <div>
                     <label for="page">.page:</label>
-                    <input type="text" name="page" id="page">
+                    <input type="text" name="page" id="page" required>
                 </div>
                 <fieldset>
                     <legend>Have you read the book?</legend>
-                    <div><label for="read">Yes</label><input type="radio" id="read" value="read" name="status"></div>
+                    <div><label for="read">Yes</label><input type="radio" id="read" value="read" name="status" checked></div>
                     <div><label for="notread">No</label><input type="radio" id="notread" value="not read" name="status"></div>
                 </fieldset>
                 <div class="center">
-                    <button type="button">Create</button>
-                    <button type="button">Cancel</button>
+                    <button type="button" class="button" id="add-btn">Create</button>
+                    <button type="button" class="button" id="close-btn">Cancel</button>
                 </div>
             </form>
+        </dialog>
+        <dialog id="rm-dialog">
+            <span>Are you sure to remove this book?</span>
+            <div class="center">
+                <button type="button" class="button" id="rm-btn">Yes</button>
+                <button type="button" class="button" id="close-btn">No</button>
+            </div>
         </dialog>
     </section>
     <script src="asset/js/script.js"></script>

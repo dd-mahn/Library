@@ -85,17 +85,54 @@ addBtn.addEventListener('click', (e)=> {
         e.preventDefault()
     }
     add(nameInput.value, authorInput.value, pageInput.value, checkStatus())
-    modal.close("canceled")
+    addDialog.close("submitted")
+    addCard(nameInput.value, authorInput.value, pageInput.value, checkStatus())
 })
     //Loop through array to display everything as cards
-function display(){
-    library.forEach(book => {
-        let card = document.createElement('div[class="book-card"')
-        
+function addCard(a,b,c,d){
+    //Create card elements and use css styles
+    let card = document.createElement('div')
+    card.classList.add('book-card')
 
-        
-    });
+    let bg = document.createElement('div')
+    bg.classList.add('card-bg')
+
+    let name = document.createElement('div')
+    name.classList.add('name','align-center')
+
+    let author = document.createElement('div')
+    author.classList.add('author','align-center')
+
+    let page = document.createElement('div')
+    page.classList.add('page','align-center')
+
+    let status = document.createElement('button')
+    status.classList.add('status','center','button')
+    if(d == 'read')status.classList.add('read')
+
+    let remove = document.createElement('button')
+    remove.classList.add('button','center')
+    remove.setAttribute('id','remove-dialog')
+
+    let removeIcon = document.createElement('i')
+    removeIcon.classList.add('fa-regular','fa-trash-can')
+    //Add elements to html
+    container.appendChild(card)
+    card.appendChild(bg)
+    card.appendChild(name)
+    card.appendChild(author)
+    card.appendChild(page)
+    card.appendChild(status)
+    card.appendChild(remove)
+    remove.appendChild(removeIcon)
+
+    //Assign value
+    name.innerText = '.name: ' + a
+    author.innerText = '.author: ' + b
+    page.innerText = '.page: ' + c
+    status.innerText = d
 }
+
     //Read click event - display each book's card
 
     //Read click event - remove 

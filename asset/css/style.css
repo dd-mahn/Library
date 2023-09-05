@@ -35,11 +35,16 @@ body{
 .button{
     transition: background-color .2s;
     transition: color .2s;
+    transition: opacity .2s;
     background-color: inherit;
     color: inherit;
     font-family: inherit;
     font-size: inherit;
     outline:none;
+    border: none;
+}
+.button:hover{
+    opacity: 0.8;
 }
 
 /* Header */
@@ -82,6 +87,7 @@ body{
     margin-bottom: 24px;
 }
 #open-form:hover{
+    opacity:1;
     background-color: var(--btn-color);
     color: var(--btn-text-color);
 }
@@ -132,14 +138,11 @@ body{
     border-radius: 5px;
     grid-area: 5 / 1 / 5 / 1;
 }
-.book-card #open-remove{
+.book-card #remove-dialog{
     color: var(--tertiary-color);
     margin-top: 8px;
     grid-area: 5 / 2 / 5 / 2;
     font-size: 22px;
-}
-#open-remove :hover{
-    opacity: 0.8;
 }
 
 /* Add Dialog */
@@ -189,9 +192,8 @@ input[type="radio"]{
     /* background-color: var(--btn-color); */
     color: var(--btn-text-color);
 }
-#add-form>div>button:hover,
-#rm-dialog>div>button:hover{
-    opacity: 0.8;
+::backdrop{
+    background-color: #55555599;
 }
 
 /* Remove dialog */

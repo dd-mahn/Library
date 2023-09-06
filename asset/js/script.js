@@ -10,22 +10,22 @@ function book(name, author, page, read){
 //DOM elements
     //On page:
 let openFormBtn = document.querySelector('#open-form')
+let openRemoveBtn = document.querySelectorAll('#open-remove')
 let loginBtn = document.getElementById("login-btn")
-let displayBtn = document.querySelectorAll('#dp-btn')
-let removeDialog = document.querySelectorAll('#remove-dialog')
-let updateBtn = document.querySelectorAll('#upd-btn')
+let updateBtn = document.querySelectorAll('#update-btn')
 
     //On dialog
 let addDialog = document.getElementById("add-dialog")
+let removeDialog = document.getElementById('rm-dialog')
 let addForm = document.getElementById("add-form")
-let removeCf = document.getElementById("rm-dialog")
 let addBtn = document.getElementById("add-btn")
-let closeBtn = document.querySelectorAll("#close-btn")
+let closeFormBtn = document.getElementById("close-form")
+let cancelRemoveBtn = document.getElementById('cancel-remove')
 let removeBtn = document.getElementById("rm-btn")
 
-    //Functionality
+    //Functional
 let container = document.querySelector(".container")
-
+let cards = document.querySelectorAll('.book-card')
     //On Form
 let nameInput = document.getElementById("name")
 let authorInput = document.getElementById("author")
@@ -55,6 +55,19 @@ function getRandomColor() {
     const randomIndexB = Math.round(Math.random() * 256)
     return `rgba(${randomIndexR},${randomIndexG},${randomIndexB})`
 }
+//Function to redefine node-lists of element whenever a new node is created
+function reDefine(){
+    openRemoveBtn = document.querySelectorAll('#open-remove')
+    updateBtn = document.querySelectorAll('#update-btn')
+    cards = document.querySelectorAll('.book-card')
+}
+//Function to reset form when the form is closed
+function resetForm(input){
+    if(input.value!='')input.value=''
+}
+function resetRadio(){
+    
+}
 
 //Into action: Books are displayed in container with grid system
 
@@ -64,12 +77,14 @@ openFormBtn.addEventListener("click", ()=>{
     addDialog.showModal()
     isDialogOpen = true
 })
-closeBtn.forEach(btn => btn.addEventListener("click", ()=> {
+closeFormBtn.addEventListener("click", () => {
     addForm.removeAttribute("novalidate")
     addDialog.close("canceled")
     addForm.setAttribute("novalidate","true")
     isDialogOpen = false
-}))
+})
+
+
     //Read form input then assign values to create new object
 function checkStatus(){//To check whether the book is read or not read
     let result = ""
@@ -86,13 +101,26 @@ addBtn.addEventListener('click', (e)=> {
     }
     add(nameInput.value, authorInput.value, pageInput.value, checkStatus())
     addDialog.close("submitted")
-    addCard(nameInput.value, authorInput.value, pageInput.value, checkStatus())
+
+    display(library[library.length-1])
+    //Redefine node list
+    reDefine()
+    //To make button functional
+    openRemove()
+    //To reset the form
+    resetForm(nameInput) 
+    resetForm(authorInput)
+    resetForm(pageInput)
+    resetRadio()
 })
-    //Loop through array to display everything as cards
-function addCard(a,b,c,d){
-    //Create card elements and use css styles
+
+
+    //Display books as cards whenever add button is clicked
+function display(book){
+        //Create pre-styled cards
     let card = document.createElement('div')
     card.classList.add('book-card')
+    card.setAttribute('data-name',book.name)
 
     let bg = document.createElement('div')
     bg.classList.add('card-bg')
@@ -108,15 +136,19 @@ function addCard(a,b,c,d){
 
     let status = document.createElement('button')
     status.classList.add('status','center','button')
-    if(d == 'read')status.classList.add('read')
+    status.setAttribute('id','update-btn')
+    if(book.read == 'read')status.classList.add('read')
+    
 
     let remove = document.createElement('button')
     remove.classList.add('button','center')
-    remove.setAttribute('id','remove-dialog')
+    remove.setAttribute('id','open-remove')
+    remove.setAttribute('data-name',book.name)
 
     let removeIcon = document.createElement('i')
     removeIcon.classList.add('fa-regular','fa-trash-can')
-    //Add elements to html
+
+        //Add elements to html
     container.appendChild(card)
     card.appendChild(bg)
     card.appendChild(name)
@@ -126,16 +158,31 @@ function addCard(a,b,c,d){
     card.appendChild(remove)
     remove.appendChild(removeIcon)
 
-    //Assign value
-    name.innerText = '.name: ' + a
-    author.innerText = '.author: ' + b
-    page.innerText = '.page: ' + c
-    status.innerText = d
+        //Show info
+    name.innerText = '. ' + book.name
+    author.innerText = '.author: ' + book.author
+    page.innerText = '.page: ' + book.page
+    status.innerText = book.read
+    
+}
+    //Read click event - open remove dialog
+function openRemove(){
+    openRemoveBtn.forEach(button => button.addEventListener('click', () => {
+        //show dialog
+        console.log(button.dataset)
+        removeDialog.showModal()
+        //cancel button control
+        cancelRemoveBtn.addEventListener('click', () => {
+            removeDialog.close()
+        })
+        //remove 
+        removeBtn.addEventListener('click', () => {
+            removeDialog.close()
+        })
+    }))
 }
 
-    //Read click event - display each book's card
+    //Read click event - remove a book card
 
-    //Read click event - remove 
-
-    //Read click event > Slide input value > Read status change
+    //Read click event - change Read status 
     

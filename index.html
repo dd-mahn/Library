@@ -24,13 +24,13 @@
             <strong>+</strong> Add new book
         </button>
         <div class="container">
-            <div class="book-card">
+            <div class="book-card" >
                 <div class="card-bg"></div>
                 <div class="name align-center"><span>.name</span></div>
                 <div class="author align-center"><span>.author:</span></div>
                 <div class="page align-center"><span>.page:</span></div>
-                <button class="status center button"><span>not read</span></button>
-                <div id="remove-dialog" class="center"><button class="button"><i class="fa-regular fa-trash-can"></i></button></i></div>
+                <button class="status center button" id="update-btn"><span>not read</span></button>
+                <button class="button center" id="open-remove"><i class="fa-regular fa-trash-can"></i></button>
             </div>
         </div>
         <dialog id="add-dialog">
@@ -53,16 +53,16 @@
                     <div><label for="notread">No</label><input type="radio" id="notread" value="not read" name="readStatus"></div>
                 </fieldset>
                 <div class="center">
-                    <button class="button" id="add-btn" formmethod="dialog">Create</button>
-                    <button class="button" id="close-btn" formmethod="dialog" value="canceled">Cancel</button>
+                    <button type="submit" class="button" id="add-btn" formmethod="dialog">Create</button>
+                    <button type="submit" class="button" id="close-form" formmethod="dialog" value="canceled">Cancel</button>
                 </div>
             </form>
         </dialog>
         <dialog id="rm-dialog">
             <span>Are you sure to remove this book?</span>
             <div class="center">
-                <button class="button" id="rm-btn">Yes</button>
-                <button class="button" id="close-btn" formmethod="dialog">No</button>
+                <button class="button" id="rm-btn" formmethod="dialog">Yes</button>
+                <button class="button" id="cancel-remove" formmethod="dialog">No</button>
             </div>
         </dialog>
     </section>

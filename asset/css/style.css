@@ -22,6 +22,7 @@ body{
     color: var(--paragraph-color);
 }
 
+
 /* Function classes */
 .align-center{
     display: flex;
@@ -33,9 +34,7 @@ body{
     align-items: center;
 }
 .button{
-    transition: background-color .2s;
-    transition: color .2s;
-    transition: opacity .2s;
+    transition: background-color .3s !important;
     background-color: inherit;
     color: inherit;
     font-family: inherit;
@@ -44,8 +43,8 @@ body{
     border: none;
 }
 .button:hover{
-    opacity: 0.8;
 }
+
 
 /* Header */
 .header{
@@ -74,6 +73,7 @@ body{
     color: var(--headline-color);
 }
 
+
 /* Display */
 .book-display{
     padding: 24px 250px;
@@ -87,15 +87,15 @@ body{
     margin-bottom: 24px;
 }
 #open-form:hover{
-    opacity:1;
     background-color: var(--btn-color);
     color: var(--btn-text-color);
 }
 .book-display .container{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
 }
+
 
 /* Cards */
 .container .book-card{
@@ -138,11 +138,24 @@ body{
     border-radius: 5px;
     grid-area: 5 / 1 / 5 / 1;
 }
-.book-card #remove-dialog{
+.status:hover{
+    background-color: #c21000;
+}
+.status.read{
+    background-color: var(--read-color);
+}
+.status.read:hover{
+    background-color: #2a6c45;
+}
+.book-card #open-remove{
+    transition: color .3s !important;
     color: var(--tertiary-color);
     margin-top: 8px;
     grid-area: 5 / 2 / 5 / 2;
     font-size: 22px;
+}
+#open-remove:hover{
+    color: #c21000;
 }
 
 /* Add Dialog */
@@ -189,21 +202,30 @@ input[type="radio"]{
     font-family: 'Merriweather', serif;
     font-weight: bold;
     letter-spacing: 1px;
-    /* background-color: var(--btn-color); */
     color: var(--btn-text-color);
 }
 ::backdrop{
     background-color: #55555599;
 }
 
+
 /* Remove dialog */
 #rm-dialog{
     text-align: center;
 }
-#close-btn{
+#close-form,
+#cancel-remove{
     background-color: var(--tertiary-color);
+}
+#close-form:hover,
+#cancel-remove:hover{
+    background-color: #c21000;
 }
 #add-btn,
 #rm-btn{
     background-color: var(--read-color);
+}
+#add-btn:hover,
+#rm-btn:hover{
+    background-color: #2a6c45;
 }

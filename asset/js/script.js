@@ -37,9 +37,6 @@ let readStatus = document.querySelectorAll('input[name="readStatus"]')
 function add(a, b, c, d){
     return library.push(new book(a, b, c, d))
 }
-//Function to display each Book Object
-function display(index){
-}
 //Function to Remove 
 function remove(index){
     return library.splice(index)
@@ -98,7 +95,7 @@ function checkStatus(){//To check whether the book is read or not read
 addBtn.addEventListener('click', (e)=> {
     if(isDialogOpen == true && !addForm.checkValidity()){
         e.preventDefault()
-    }
+    }else{
     add(nameInput.value, authorInput.value, pageInput.value, checkStatus())
     addDialog.close("submitted")
 
@@ -112,6 +109,7 @@ addBtn.addEventListener('click', (e)=> {
     resetForm(authorInput)
     resetForm(pageInput)
     resetRadio()
+    }
 })
 
 
@@ -124,6 +122,7 @@ function display(book){
 
     let bg = document.createElement('div')
     bg.classList.add('card-bg')
+    bg.style.background = `linear-gradient(90deg, ${getRandomColor()} 0%, ${getRandomColor()} 0%, ${getRandomColor()} 100%)`
 
     let name = document.createElement('div')
     name.classList.add('name','align-center')
@@ -169,20 +168,22 @@ function display(book){
 function openRemove(){
     openRemoveBtn.forEach(button => button.addEventListener('click', () => {
         //show dialog
-        console.log(button.dataset)
         removeDialog.showModal()
         //cancel button control
         cancelRemoveBtn.addEventListener('click', () => {
             removeDialog.close()
         })
-        //remove 
+        ////Read click event - remove a book card
         removeBtn.addEventListener('click', () => {
+            for(var i = 0; i < cards.length; i++){
+                if(cards[i].dataset.name === button.dataset.name){
+                    container.removeChild(cards[i])
+                    remove(i-1)
+                }
+            }
             removeDialog.close()
         })
     }))
 }
-
-    //Read click event - remove a book card
-
     //Read click event - change Read status 
     

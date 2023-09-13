@@ -42,8 +42,12 @@ function remove(index){
     return library.splice(index)
 }
 //Function to change read Status of each Object
-function update(index, status){
-    return library[index].read = status
+function update(name, status){
+    for(var i = 0; i < library.length; i++){
+        if(library[i].name === name){
+            library[i].read = status
+        }
+    }
 }
 //Function to get random color for book image
 function getRandomColor() {
@@ -62,25 +66,18 @@ function reDefine(){
 function resetForm(input){
     if(input.value!='')input.value=''
 }
-function resetRadio(){
-    
-}
 
 //Into action: Books are displayed in container with grid system
 
     //Read click event - Open form - Close form
-let isDialogOpen = false
-openFormBtn.addEventListener("click", ()=>{
-    addDialog.showModal()
-    isDialogOpen = true
-})
-closeFormBtn.addEventListener("click", () => {
+openFormBtn.onclick = () => {
+    addDialog.showModal() 
+}
+closeFormBtn.onclick = () => {
     addForm.removeAttribute("novalidate")
     addDialog.close("canceled")
     addForm.setAttribute("novalidate","true")
-    isDialogOpen = false
-})
-
+}
 
     //Read form input then assign values to create new object
 function checkStatus(){//To check whether the book is read or not read
@@ -92,29 +89,28 @@ function checkStatus(){//To check whether the book is read or not read
     }
     return result
 }
-addBtn.addEventListener('click', (e)=> {
-    if(isDialogOpen == true && !addForm.checkValidity()){
-        e.preventDefault()
-    }else{
-    add(nameInput.value, authorInput.value, pageInput.value, checkStatus())
-    addDialog.close("submitted")
 
-    display(library[library.length-1])
-    //Redefine node list
-    reDefine()
-    //To make button functional
-    openRemove()
-    //To reset the form
-    resetForm(nameInput) 
-    resetForm(authorInput)
-    resetForm(pageInput)
-    resetRadio()
+function newBook(){
+    addBtn.onclick = (e) => {
+        if(!addForm.checkValidity()){
+            e.preventDefault()
+        }else{
+            add(nameInput.value, authorInput.value, pageInput.value, checkStatus())
+            createCard(library[library.length - 1])
+            //Redefine node list
+            reDefine()
+            //To reset the form
+            resetForm(nameInput) 
+            resetForm(authorInput)
+            resetForm(pageInput)
+            //Close
+            addDialog.close("submitted")
+        }
     }
-})
-
+}
 
     //Display books as cards whenever add button is clicked
-function display(book){
+function createCard(book){
         //Create pre-styled cards
     let card = document.createElement('div')
     card.classList.add('book-card')
@@ -136,13 +132,17 @@ function display(book){
     let status = document.createElement('button')
     status.classList.add('status','center','button')
     status.setAttribute('id','update-btn')
-    if(book.read == 'read')status.classList.add('read')
-    
+    status.setAttribute('data-name', book.name)
+    if(book.read == 'read'){
+        status.classList.add('read')
+    }
+    status.onclick = () => changeStatus(status)
 
     let remove = document.createElement('button')
     remove.classList.add('button','center')
     remove.setAttribute('id','open-remove')
     remove.setAttribute('data-name',book.name)
+    remove.onclick = () => openRemove(remove)
 
     let removeIcon = document.createElement('i')
     removeIcon.classList.add('fa-regular','fa-trash-can')
@@ -162,28 +162,39 @@ function display(book){
     author.innerText = '.author: ' + book.author
     page.innerText = '.page: ' + book.page
     status.innerText = book.read
-    
 }
+
     //Read click event - open remove dialog
-function openRemove(){
-    openRemoveBtn.forEach(button => button.addEventListener('click', () => {
-        //show dialog
-        removeDialog.showModal()
-        //cancel button control
-        cancelRemoveBtn.addEventListener('click', () => {
-            removeDialog.close()
-        })
-        ////Read click event - remove a book card
-        removeBtn.addEventListener('click', () => {
-            for(var i = 0; i < cards.length; i++){
-                if(cards[i].dataset.name === button.dataset.name){
-                    container.removeChild(cards[i])
-                    remove(i-1)
-                }
+function openRemove(button){
+    removeDialog.showModal()
+    //cancel button control
+    cancelRemoveBtn.onclick = () => {
+        removeDialog.close()
+    }
+    ////Read click event - remove a book card
+    removeBtn.onclick = () => {
+        for(var i = 0; i < cards.length; i++){
+            if(cards[i].dataset.name === button.dataset.name){
+                container.removeChild(cards[i])
+                remove(i)
+                removeDialog.close()
             }
-            removeDialog.close()
-        })
-    }))
+        }
+    }
 }
+
     //Read click event - change Read status 
-    
+function changeStatus(button){
+        let dataName = button.dataset.name
+        if(button.innerHTML === "not read"){
+            button.classList.add("read")
+            button.innerHTML = "read"
+            update(dataName,"read")
+        }else{
+            button.classList.remove("read")
+            button.innerHTML = "not read"
+            update(dataName,"not read")
+        }
+}
+
+newBook()

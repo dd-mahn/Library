@@ -1,2 +1,2 @@
-# Library
-JavaScript Object Practice
+# Library - TheOdinProject
+JavaScript Array, Object Practice
